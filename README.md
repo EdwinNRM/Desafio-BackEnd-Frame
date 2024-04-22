@@ -1,14 +1,17 @@
-# Desafio BackEnd Frame
+# Desafio Back-End Frame
 
-Este é um projeto de exemplo para o Desafio BackEnd do Frame.
+## Descrição
+Este é um projeto desenvolvido como parte de um desafio para uma vaga de desenvolvedor back-end na empresa Framework Digital. O objetivo é criar uma API RESTFull de uma carteira virtual contemplando 2 tipos de usuários, clientes e lojistas.
 
-## Requisitos
-
-- Python 3.6 ou superior
+## Tecnologias Utilizadas
+- Python
 - Flask
-- Flask-RestX
+- Flask-RESTx
 - Flask-JWT-Extended
-- Flask-SQLAlchemy
+- SQLAlchemy
+
+## Instalação
+1. Clone o repositório:
 
 ## Instalação
 
@@ -29,9 +32,10 @@ python run.py
 ```
 2. Acesse a API em `http://localhost:5000`.
 
-## Endpoints
+## Endpoints da API
 
-- `/register`: Registro de usuários.
-- `/login`: Login de usuários.
-- `/balance`: Verificar saldo.
-- `/transaction`: Efetuar transação.
+- `/register`: Endpoint para registrar um novo usuário.
+- `/login`: Endpoint para autenticar um usuário e obter um token de acesso.
+- `/balance`: Endpoint para verificar o saldo de um usuário.
+- `/transaction`: Endpoint para realizar uma transação entre usuários.
+- `/user/<user_id>`: Endpoint para atualizar e deletar os dados de um usuário.

@@ -78,6 +78,7 @@ class UserResource(Resource):
     @api.expect(user_model)
     @jwt_required()
     def patch(self, user_id):
+        """Endpoint para atualização de um usuário existente"""
         data = request.json
         current_user_id = get_jwt_identity()
         if current_user_id != user_id:
@@ -90,6 +91,7 @@ class UserResource(Resource):
 
     @jwt_required()
     def delete(self, user_id):
+        """Endpoint para deleção de um usuário existente"""
         current_user_id = get_jwt_identity()
         if current_user_id != user_id:
             return {'message': 'Unauthorized'}, 401

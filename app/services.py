@@ -73,7 +73,11 @@ def make_transaction(data, current_user_id):
             logging.error(f'Transação falhou: Saldo insuficiente ou destinatário inválido. Pagador ID: {current_user_id}, Destinatário ID: {payee_id}')
             return False
         
-        if payee.is_merchant:
+        if payee == payer:
+            logging.error(f'Transação falhou: Destinatário não pode ser o mesmo recebedor. Pagador ID: {current_user_id}, Destinatário ID: {payee_id}')
+            return False
+        
+        if payer.is_merchant:
             logging.error(f'Transação falhou: Destinatário é um lojista. Pagador ID: {current_user_id}, Destinatário ID: {payee_id}')
             return False
 
@@ -90,5 +94,42 @@ def make_transaction(data, current_user_id):
         return True
     except Exception as e:
         logging.error(f'Erro ao fazer transação: {str(e)}')
+        db.session.rollback()
+        return False
+
+def update_user_data(user_id, data):
+    try:
+        user = User.query.get(user_id)
+        if user:
+            user.name = data.get('name', user.name)
+            user.cpf = data.get('cpf', user.cpf)
+            user.email = data.get('email', user.email)
+            user.password = bcrypt.hashpw(data.get('password', user.password).encode('utf-8'), bcrypt.gensalt())
+            user.balance = data.get('balance', user.balance)
+            user.is_merchant = data.get('is_merchant', user.is_merchant)
+            db.session.commit()
+            logging.error(f'Dados atualizados para o usuário {user_id}')
+            return True
+        else:
+            logging.error(f'Usuário com ID {user_id} não encontrado')
+            return False
+    except Exception as e:
+        logging.error(f'Falha ao atualizar dados para o usuário {user_id}: {str(e)}')
+        db.session.rollback()
+        return False
+    
+def delete_user(user_id):
+    try:
+        user = User.query.get(user_id)
+        if user:
+            db.session.delete(user)
+            db.session.commit()
+            logging.error(f'Dados excluidos para o usuário {user_id}')
+            return True
+        else:
+            logging.error(f'Usuário com ID {user_id} não encontrado')
+            return False
+    except Exception as e:
+        logging.error(f'Falha ao excluir os dados para o usuário {user_id}: {str(e)}')
         db.session.rollback()
         return False

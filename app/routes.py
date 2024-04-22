@@ -3,7 +3,7 @@ from flask_restx import Resource, Api, fields
 from flask_jwt_extended import jwt_required, create_access_token, get_jwt_identity
 from app import app, db
 from app.models import User
-from app.services import register_user, login_user, get_balance, make_transaction
+from app.services import register_user, login_user, get_balance, make_transaction, update_user_data,delete_user
 
 api = Api(app, version='1.0', title='API de Pagamentos', description='API para realizar transações de pagamento')
 
@@ -72,3 +72,29 @@ class Transaction(Resource):
             return {'message': 'Transaction successful'}, 200
         else:
             return {'message': 'Transaction failed'}, 400
+
+@api.route('/user/<int:user_id>')
+class UserResource(Resource):
+    @api.expect(user_model)
+    @jwt_required()
+    def patch(self, user_id):
+        data = request.json
+        current_user_id = get_jwt_identity()
+        if current_user_id != user_id:
+            return {'message': 'Unauthorized'}, 401
+        result = update_user_data(user_id, data)
+        if result:
+            return {'message': 'User data updated successfully'}, 200
+        else:
+            return {'message': 'User data update failed'}, 400
+
+    @jwt_required()
+    def delete(self, user_id):
+        current_user_id = get_jwt_identity()
+        if current_user_id != user_id:
+            return {'message': 'Unauthorized'}, 401
+        result = delete_user(user_id)
+        if result:
+            return {'message': 'User deleted successfully'}, 200
+        else:
+            return {'message': 'User deletion failed'}, 400

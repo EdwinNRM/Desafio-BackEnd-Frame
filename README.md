@@ -6,7 +6,7 @@ Este é um projeto de exemplo para o Desafio BackEnd do Frame.
 
 - Python 3.6 ou superior
 - Flask
-- Flask-RESTful
+- Flask-RestX
 - Flask-JWT-Extended
 - Flask-SQLAlchemy
 

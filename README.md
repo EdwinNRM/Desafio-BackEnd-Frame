@@ -24,7 +24,7 @@ git clone <https://github.com/EdwinNRM/Desafio-BackEnd-Frame.git>
 
 ```
 
-1. Instale as dependências:
+2. Instale as dependências:
 
 ```
 pip install -r requirements.txt
@@ -41,21 +41,21 @@ git clone <https://github.com/EdwinNRM/Desafio-BackEnd-Frame.git>
 
 ```
 
-1. Navegue até o diretório do projeto:
+3. Navegue até o diretório do projeto:
 
 ```
 cd Desafio-BackEnd-Frame
 
 ```
 
-1. Construa a imagem Docker:
+4. Construa a imagem Docker:
 
 ```
 docker build -t desafio-backend-frame .
 
 ```
 
-1. Execute o contêiner Docker:
+5. Execute o contêiner Docker:
 
 ```
 docker run -p 5000:5000 desafio-backend-frame
@@ -73,7 +73,7 @@ python run.py
 
 ```
 
-1. Acesse a API em `http://localhost:5000`.
+2. Acesse a API em `http://localhost:5000`.
 
 ### Com Docker
 

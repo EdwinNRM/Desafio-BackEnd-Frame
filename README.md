@@ -85,4 +85,4 @@ python run.py
 - `/login`: Endpoint para autenticar um usuário e obter um token de acesso.
 - `/balance`: Endpoint para verificar o saldo de um usuário.
 - `/transaction`: Endpoint para realizar uma transação entre usuários.
-- `/user/<user_id>`: Endpoint para atualizar e deletar os dados de um usuário.
+- `/user/<user_id>`: Endpoint para atualizar e deletar os dados de um usuário (somente será utilizado para testes).

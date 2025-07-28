@@ -1,8 +1,8 @@
-# Desafio Back-End Frame
+# Desafio Back-End
 
 ## Descrição
 
-Este é um projeto desenvolvido como parte de um desafio para uma vaga de desenvolvedor back-end na empresa Framework Digital. O objetivo é criar uma API RESTFull de uma carteira virtual contemplando 2 tipos de usuários, clientes e lojistas.
+Este é um projeto desenvolvido como parte de um desafio . O objetivo é criar uma API RESTFull de uma carteira virtual contemplando 2 tipos de usuários, clientes e lojistas.
 
 ## Tecnologias Utilizadas
 
